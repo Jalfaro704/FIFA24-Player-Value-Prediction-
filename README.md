@@ -15,36 +15,7 @@ New projects are added each sprint. All code is written in Python and trained on
 
 | # | Project | Description | Stack | Status |
 |---|---|---|---|---|
-| A1 | [Binary Image Classifier — Cat vs Dog](#a1--binary-image-classification-cat-vs-dog) | CNN trained on Oxford-IIIT Pet Dataset with hyperparameter tuning across 3 configurations | PyTorch · Torchvision · Colab | ✅ Complete |
 | A2 | [FIFA 24 Player Market Value Predictor](#a2--fifa-24-player-market-value-prediction-in-progress) | FFNN to predict Ligue 1 player market values using feature selection, SEM & KMeans | PyTorch · Scikit-learn · SEM | 🔄 In Progress |
-
----
-
-## A1 — Binary Image Classification (Cat vs Dog)
-
-**Goal:** Classify images as cat or dog using a custom CNN architecture trained on the Oxford-IIIT Pet Dataset.
-
-**Highlights:**
-- Designed a 3-block CNN with Global Average Pooling and configurable dropout
-- Trained and compared **3 hyperparameter configurations** (learning rate, batch size, dropout, epochs)
-- Best config: `LR=0.001 · Epochs=5 · Batch=32 · Dropout=0.3` → **100% training accuracy**
-- Config 1 converged **2× faster** than competing configurations (5 vs 10 epochs)
-
-**Tech Stack:** PyTorch · Torchvision · Oxford-IIIT Pet Dataset · Google Colab T4 GPU
-
-**Dataset:**
-- 3,680 training images
-- 37 breed classes remapped to binary labels (Cat=0, Dog=1)
-
-**Results:**
-
-| Config | LR | Epochs | Batch | Dropout | Accuracy |
-|---|---|---|---|---|---|
-| Config 1 — Baseline 🏆 | 0.001 | 5 | 32 | 0.3 | 100% |
-| Config 2 — Lower LR | 0.0001 | 10 | 32 | 0.5 | 100% |
-| Config 3 — Smaller Batch | 0.0005 | 10 | 16 | 0.2 | 100% |
-
-📁 **File:** `A1_CNN_Option_1.ipynb`
 
 ---
 
