@@ -1,39 +1,21 @@
-# 🧠 Portafolio-AML — Machine Learning Portfolio
-### Advanced Machine Learning | PyTorch · Python · Real-World Datasets
+# ⚽ A2 — FIFA 24 Player Market Value Prediction
+### Feedforward Neural Network · Ligue 1 · EA Sports FC 24 Dataset · VS Code · Python 3.11.15
 
 ---
 
-## 👋 About This Portfolio
+## 📌 Project Overview
 
-This repository serves as the central hub for all Machine Learning projects developed during my **Advanced Machine Learning** coursework. Each project applies end-to-end ML workflows — from data cleaning and feature engineering to model training, tuning, and evaluation — using real-world datasets.
+This project predicts the market value (`value_eur`) of **Ligue 1 football players** using in-game statistics from the EA Sports FC 24 dataset. The pipeline spans Exploratory Data Analysis, IQR-based outlier removal, multi-method feature selection, Structural Equation Modeling (SEM), KMeans clustering, and a Feedforward Neural Network (FFNN) for final predictions.
 
-New projects are added each sprint. All code is written in Python and trained on GPU-accelerated environments (Google Colab T4).
-
----
-
-## 📂 Projects
-
-| # | Project | Description | Stack | Status |
-|---|---|---|---|---|
-| A2 | [FIFA 24 Player Market Value Predictor](#a2--fifa-24-player-market-value-prediction-in-progress) | FFNN to predict Ligue 1 player market values using feature selection, SEM & KMeans | PyTorch · Scikit-learn · SEM | 🔄 In Progress |
+> 🔄 **Status: In Progress**
 
 ---
 
-## A2 — FIFA 24 Player Market Value Prediction *(In Progress)*
+## 📊 Dataset
 
-**Goal:** Predict the market value (`value_eur`) of Ligue 1 football players using in-game statistics from the EA Sports FC 24 dataset.
-
-**Pipeline:**
-1. 📊 **Exploratory Data Analysis (EDA)** — understanding distributions, correlations, and missing values
-2. 🧹 **Data Cleaning** — IQR-based outlier removal, null value handling
-3. 🔍 **Feature Selection** — KBest, LASSO, and Decision Tree methods to identify top 4 predictive features
-4. 🏗️ **Structural Equation Modeling (SEM)** — builds latent constructs (e.g., Technical Skill, Physical Ability) from correlated variables
-5. 🔵 **KMeans Clustering** — reveals distinct player archetypes within Ligue 1
-6. 🧠 **Feedforward Neural Network (FFNN)** — trained on Train/Test split to predict market value
-
-**Tech Stack:** PyTorch · Scikit-learn · SEM · KMeans · Python · Google Colab
-
-**Dataset:**
+- **Source:** EA Sports FC 24 Dataset
+- **Target Variable:** `value_eur` — player market value in euros
+- **Scope:** Ligue 1 players only
 
 | Stage | Rows | Columns |
 |---|---|---|
@@ -42,44 +24,95 @@ New projects are added each sprint. All code is written in Python and trained on
 | After dropping null `value_eur` | 5,080 | 109 |
 | After IQR outlier removal | 4,458 | 110 |
 
-**Expected Outcome:** A model capable of accurately estimating a Ligue 1 player's economic worth while identifying which latent constructs and individual features drive that value most.
+---
 
-📁 **File:** `A2_FIFA24_FFNN.ipynb` *(coming soon)*
+## 🔄 Pipeline
+
+**1. 📊 Exploratory Data Analysis (EDA)**
+Understanding distributions, correlations, and missing values across 109 features before any modeling begins.
+
+**2. 🧹 Data Cleaning**
+- Filtered full dataset to Ligue 1 players only
+- Removed rows with null `value_eur`
+- Applied **IQR-based outlier removal** to reduce noise and improve model generalization
+
+**3. 🔍 Feature Selection**
+Three methods were applied and compared to identify the **top 4 most predictive features:**
+
+| Method | Approach |
+|---|---|
+| **KBest** | Selects features with highest statistical scores (f_regression) |
+| **LASSO** | Penalizes less important features, shrinking coefficients to zero |
+| **Decision Tree** | Ranks features by impurity-based importance scores |
+
+**4. 🏗️ Structural Equation Modeling (SEM)**
+SEM builds **latent constructs** from groups of correlated in-game variables, capturing deeper relationships that individual features alone cannot express.
+
+Example constructs:
+- **Technical Skill** — dribbling, ball control, short passing, vision
+- **Physical Ability** — pace, stamina, strength, acceleration
+
+**5. 🔵 KMeans Clustering**
+Reveals distinct **player archetypes** within Ligue 1 by grouping players according to their in-game attribute profiles.
+
+**6. 🧠 Feedforward Neural Network (FFNN)**
+Final model trained on a proper Train/Test split to predict continuous market value.
+
+---
+
+## 🧠 Model — Feedforward Neural Network (FFNN)
+
+- **Task:** Regression — predicting continuous `value_eur`
+- **Architecture:** Fully connected layers with ReLU activations
+- **Split:** Train / Test
+- **Framework:** PyTorch
+
+> ⚙️ Final architecture, hyperparameters, and evaluation metrics will be updated upon project completion.
 
 ---
 
 ## 🛠️ Tech Stack
 
-![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Python](https://img.shields.io/badge/Python-3.11.15-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0-orange)
-![Colab](https://img.shields.io/badge/Google_Colab-T4_GPU-yellow)
+![VSCode](https://img.shields.io/badge/VS_Code-Editor-007ACC?logo=visualstudiocode)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-latest-green)
 
 | Tool | Purpose |
 |---|---|
-| PyTorch | CNN & FFNN model building |
-| Torchvision | Dataset loading & image transforms |
-| Scikit-learn | Feature selection, clustering, preprocessing |
+| Python 3.11.15 | Core programming language |
+| PyTorch | FFNN model building & training |
+| Scikit-learn | Feature selection, KMeans clustering, preprocessing |
 | SEM | Latent construct modeling |
-| Google Colab | GPU-accelerated training (T4) |
+| VS Code | Development environment |
 | GitHub | Version control & portfolio hosting |
 
 ---
 
-## 🚀 How to Run Any Project
+## 🚀 How to Run
 
-1. Open the `.ipynb` file in **Google Colab**
-2. Go to `Runtime → Change runtime type → T4 GPU`
-3. Run all cells in order
-4. Models are saved automatically to Google Drive
+1. Clone the repository
+```bash
+git clone https://github.com/Jalfaro704/Portafolio-AML.git
+cd Portafolio-AML
+```
+2. Make sure you have **Python 3.11.15** installed
+3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+4. Open the project in **VS Code** and run the notebook or script
 
 ---
 
 ## 📈 Roadmap
 
-- [x] A1 — CNN Binary Image Classifier
-- [ ] A2 — FIFA 24 FFNN Market Value Predictor
-- [ ] A3 — *(Coming next sprint)*
+- [ ] EDA & Data Cleaning *(in progress)*
+- [ ] Feature Selection — KBest, LASSO, Decision Tree
+- [ ] SEM Latent Construct Modeling
+- [ ] KMeans Clustering
+- [ ] FFNN Training & Evaluation
+- [ ] Final Results & Model Export
 
 ---
 
@@ -90,3 +123,5 @@ Feel free to follow along, star the repo, or reach out — always happy to conne
 [![GitHub](https://img.shields.io/badge/GitHub-Jalfaro704-black?logo=github)](https://github.com/Jalfaro704)
 
 ---
+
+*Built with 🧠 during Advanced Machine Learning coursework · Python 3.11.15 · VS Code*
